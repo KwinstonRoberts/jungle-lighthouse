@@ -21,6 +21,9 @@ end
 
 # Let's do this ...
 
+## UsersController
+User.destroy_all
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
