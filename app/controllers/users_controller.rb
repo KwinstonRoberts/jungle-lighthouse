@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       puts user
       if user && user.authenticate(params[:user][:password])
         log_in user
-
       end
     else
       render :new
