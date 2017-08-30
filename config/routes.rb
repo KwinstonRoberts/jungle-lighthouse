@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
-  resource :users do
-  end
+  resource :users
+  resource :sessions, only: [:new,:create,:destroy]
 
   resource :cart, only: [:show] do
     put    :add_item

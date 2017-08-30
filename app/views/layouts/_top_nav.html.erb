@@ -28,10 +28,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if session[:user_id] %>
-        <li><%= link_to "Log Out", users_path, method: :delete%>
+        <li><%= link_to "Log Out", sessions_path, method: :delete%>
 </li>
         <% else %>
-          <li><%= link_to 'Login', [:new, :users] %></li>
+          <li><%= link_to 'Login', [:new, :sessions] %></li>
           <li><%= link_to 'Register', [:new, :users] %></li>
         <% end %>
        <li class="dropdown">
