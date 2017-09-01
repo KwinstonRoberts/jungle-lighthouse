@@ -25,7 +25,56 @@
         </dl>
       </div>
     </div>
-
+  </article>
+  <% if session[:user_id] %>
+    <%= form_for @product, url: product_reviews_path(@product.id), method: :post do |form| %>
+      <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+          <strong>The following errors prevented saving:</strong>
+          <ul>
+            <% form.object.errors.full_messages.each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+        <%end%>
+       <%= form.fields_for :reviews do |f| %>
+          <form>
+            <div class='form-group'>
+              <%= f.label :description %>
+              <%= f.text_area :description %>
+            </div>
+            <div class='form-group'>
+              <%= f.label :rating%>
+              <%= f.select :rating,options_for_select([['Select a rating'],1,2,3,4,5]), class: 'form-control'%>
+            </div>
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          </form>
+        <%end%>
+      <%end%>
+      <%end%>
+    <article>
+    <div class="row">
+      <div class="col-sm-12">
+        <h2> Reviews </h2>
+        <dl class="dl-horizontal">
+            <% @product.reviews.each do |review| %>
+            <hr>
+            <dt>Name</dt>
+            <dd><b>
+              <% if review.user %>
+                <%= review.user.name %>
+              <% else %>
+                anonymous
+              <% end %>
+            </b></dd>
+            <dd><%= review.description %></dd>
+            <dt>Rating</dt>
+            <dd><%= review.rating %>/5</dd>
+            <%end%>
+        </dl>
+      </div>
+    </div>
   </article>
 
 </section>

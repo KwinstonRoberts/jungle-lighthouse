@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
     cart.each do |product_id, details|
       if product = Product.find_by(id: product_id)
         quantity = details['quantity'].to_i
-        ApplicationMailer.thanks_email(order).deliver_now
+        OrderMailer.order_email(order).deliver_now
         order.line_items.new(
           product: product,
           quantity: quantity,

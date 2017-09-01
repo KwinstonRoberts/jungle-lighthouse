@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
-    @session = User.new
   end
+
   def log_in(user)
     session[:user_id] = user.id
     redirect_to :root, notice: 'Logged in'
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
     else
-      render 'new'
+      render 'root'
     end
   end
 

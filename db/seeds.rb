@@ -21,8 +21,6 @@ end
 
 # Let's do this ...
 
-## UsersController
-User.destroy_all
 
 ## CATEGORIES
 
@@ -134,6 +132,17 @@ cat3.products.create!({
   quantity: 23,
   price: 2_483.75
 })
+
+## USERS
+
+user1 = User.find_or_create_by! name: 'Kyle', email: 'kyle.w.r@hotmail.com', password: '351797asd'
+
+## REVIEWS
+user1.reviews.create!({
+  product_id: Product.pluck(:id).first,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+  })
 
 
 puts "DONE!"
