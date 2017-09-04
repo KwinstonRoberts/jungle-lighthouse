@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def log_in(user)
-    session[:user_id] = user.id
+    current_user = user.id
     redirect_to :root, notice: 'Logged in'
   end
   def create

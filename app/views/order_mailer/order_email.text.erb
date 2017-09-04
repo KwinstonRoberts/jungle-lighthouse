@@ -1,3 +1,15 @@
 
-      Sample mail sent using smtp.
-  
+  Thanks for your order!
+===================================================
+
+<%= item.product.name %></h4>
+
+<%= item.product.description %></p>
+
+<%= item.item_price %>
+
+<%= item.quantity %>
+
+$<%= item.total_price %>
+
+<% @total_price += item.total_price %>

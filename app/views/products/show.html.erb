@@ -26,8 +26,9 @@
       </div>
     </div>
   </article>
-  <% if session[:user_id] %>
+  <% if !@current_user.nil? %>
     <%= form_for @product, url: product_reviews_path(@product.id), method: :post do |form| %>
+
       <% if form.object.errors.any? %>
         <div class="alert alert-danger">
           <strong>The following errors prevented saving:</strong>
@@ -38,27 +39,35 @@
           </ul>
         </div>
         <%end%>
-       <%= form.fields_for :reviews do |f| %>
-          <form>
-            <div class='form-group'>
-              <%= f.label :description %>
-              <%= f.text_area :description %>
-            </div>
-            <div class='form-group'>
-              <%= f.label :rating%>
-              <%= f.select :rating,options_for_select([['Select a rating'],1,2,3,4,5]), class: 'form-control'%>
-            </div>
-            <%= f.submit 'Submit', class: 'btn btn-primary' %>
-          </form>
-        <%end%>
+          <hr>
+        <div class='col-xs-12 col-md-4 col-md-offset-4'>
+         <%= form.fields_for :reviews do |f| %>
+            <h3> Add a new review </h3>
+            <form>
+              <div class='form-group'>
+                <%= f.label :description %>
+                <%= f.text_area :description, class: "form-control" %>
+              </div>
+              <div class='form-group'>
+                <%= f.label :rating%>
+                <%= f.select :rating,options_for_select([['Select a rating'],1,2,3,4,5]),{}, {class: 'form-control'}%>
+              </div>
+              <%= f.submit 'Submit', class: 'btn btn-primary' %>
+            </form>
+          <%end%>
+        </div>
       <%end%>
       <%end%>
     <article>
     <div class="row">
       <div class="col-sm-12">
         <h2> Reviews </h2>
+        <h3> Overall rating: <%= @product.reviews.average(:rating) || "~" %>/5</h3>
         <dl class="dl-horizontal">
             <% @product.reviews.each do |review| %>
+            <% if flash[:notice] %>
+              <div class="alert alert-warning"><%= flash[:notice] %></div>
+            <% end %>
             <hr>
             <dt>Name</dt>
             <dd><b>
@@ -71,10 +80,12 @@
             <dd><%= review.description %></dd>
             <dt>Rating</dt>
             <dd><%= review.rating %>/5</dd>
+            <% if review.user.id === session[:user_id] %>
+              <dd><%= link_to "Delete", [@product,review], method: :delete, data: {confirm: "Are you sure you want to delete this ?"}, class: 'btn btn-danger'%></dd>
             <%end%>
+          <%end%>
         </dl>
       </div>
     </div>
   </article>
-
 </section>

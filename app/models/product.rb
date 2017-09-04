@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   mount_uploader :image, ProductImageUploader
 
   belongs_to :category
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   #accepts_nested_attributes_for :reviews, allow_destroy: true
   validates :name, presence: true
   validates :price, presence: true
