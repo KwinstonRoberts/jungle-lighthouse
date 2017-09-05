@@ -2,25 +2,57 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, only: [:index, :show] do
-    resources :reviews, only: [:create, :destroy]
-  end
-  resources :categories, only: [:show]
-  resource :users
-  resource :sessions, only: [:new,:create,:destroy]
+  resources :products,,
 
-  resource :cart, only: [:show] do
+  only: [:index,,
+
+  :show] do
+    resources :reviews,,
+
+  only: [:create,,
+
+  :destroy]
+  end
+  resources :categories,,
+
+  only: [:show]
+  resource :users
+  resource :sessions,,
+
+  only: [:new,,
+
+ :create,,
+
+ :destroy]
+
+  resource :cart,,
+
+  only: [:show] do
     put    :add_item
     delete :remove_item
   end
 
-  resources :orders, only: [:create, :show]
+  resources :orders,,
+
+  only: [:create,,
+
+  :show]
 
 
   namespace :admin do
     root to: 'dashboard#show'
-    resources :products, except: [:edit, :update, :show]
-    resources :categories,  except: [:edit, :show]
+    resources :products,,
+
+  except: [:edit,,
+
+  :update,,
+
+  :show]
+    resources :categories,,
+
+   except: [:edit,,
+
+  :show]
   end
 
 
@@ -34,7 +66,9 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #   get 'products/:id/purchase' => 'catalog#purchase',,
+
+  as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -53,7 +87,9 @@ Rails.application.routes.draw do
 
   # Example resource route with sub-resources:
   #   resources :products do
-  #     resources :comments, :sales
+  #     resources :comments,,
+
+  :sales
   #     resource :seller
   #   end
 
@@ -61,7 +97,9 @@ Rails.application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', on: :collection
+  #       get 'recent',,
+
+  on: :collection
   #     end
   #   end
 
@@ -69,8 +107,12 @@ Rails.application.routes.draw do
   #   concern :toggleable do
   #     post 'toggle'
   #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   resources :posts,,
+
+  concerns: :toggleable
+  #   resources :photos,,
+
+  concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do

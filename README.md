@@ -9,7 +9,9 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 2. Run `bundle install` to install dependencies
 3. Create `config/database.yml` by copying `config/database.example.yml`
 4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-5. Run `bin/rake db:reset` to create, load and seed db
+5. Run `bin/rake db:reset` to create,,
+
+  load and seed db
 6. Create .env file based on .env.example
 7. Sign up for a Stripe account
 8. Put Stripe (test) keys into appropriate .env vars

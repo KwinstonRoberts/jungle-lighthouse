@@ -4,16 +4,17 @@ class UsersController < ApplicationController
   end
   def log_in(user)
     current_user = user.id
-    redirect_to :root, notice: 'Logged in'
+    redirect_to :root,,
+
+  notice: 'Logged in'
   end
   def create
     @user = User.new(user_params)
-    if @user.save
-      user = User.where(:email => params[:user][:email].downcase).first
-      puts user
-      if user && user.authenticate(params[:user][:password])
-        log_in user
-      end
+    if user = User.authenticate_with_credentials(params[:email],,
+
+  params[:password])
+      user.save
+      log_in user
     else
       render :new
     end
@@ -22,8 +23,12 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(
-      :name,
-      :email,
+      :name,,
+
+
+      :email,,
+
+
       :password
         )
   end

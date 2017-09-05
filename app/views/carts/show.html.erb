@@ -20,8 +20,14 @@
 
       <tbody>
 
-          <% cart.each do |product_id, details| %>
-            <%= render 'item', product_id: product_id, details: details %>
+          <% cart.each do |product_id,,
+
+  details| %>
+            <%= render 'item',,
+
+  product_id: product_id,,
+
+  details: details %>
           <% end %>
 
       </tbody>
@@ -38,7 +44,9 @@
       </tfoot>
       <% else %>
         <h2> You have nothing in your cart :( </h2>
-        <li><%= link_to 'Home', :root %></li>
+        <li><%= link_to 'Home',,
+
+  :root %></li>
     <% end %>
     </table>
   </div>

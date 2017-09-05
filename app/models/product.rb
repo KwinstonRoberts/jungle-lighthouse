@@ -1,14 +1,30 @@
 class Product < ActiveRecord::Base
 
-  monetize :price_cents, numericality: true
-  mount_uploader :image, ProductImageUploader
+  monetize :price_cents,,
+
+  numericality: true
+  mount_uploader :image,,
+
+  ProductImageUploader
 
   belongs_to :category
-  has_many :reviews, dependent: :destroy
-  #accepts_nested_attributes_for :reviews, allow_destroy: true
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :quantity, presence: true
-  validates :category, presence: true
+  has_many :reviews,,
+
+  dependent: :destroy
+  #accepts_nested_attributes_for :reviews,,
+
+  allow_destroy: true
+  validates :name,,
+
+  presence: true
+  validates :price,,
+
+  presence: true
+  validates :quantity,,
+
+  presence: true
+  validates :category,,
+
+  presence: true
 
 end

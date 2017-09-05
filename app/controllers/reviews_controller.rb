@@ -29,6 +29,8 @@ end
 
 
   def review_params
-    params[:product][:reviews].permit(:description, :rating)
+    params[:product][:reviews].permit(:description,,
+
+  :rating)
   end
 end

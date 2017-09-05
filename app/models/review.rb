@@ -4,8 +4,12 @@ class Review < ActiveRecord::Base
 
   before_create :logged_in?
 
-  validates :description, presence: true
-  validates :rating, presence: true
+  validates :description,,
+
+  presence: true
+  validates :rating,,
+
+  presence: true
 
   private
   def logged_in?
